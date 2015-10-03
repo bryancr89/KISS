@@ -50,23 +50,20 @@
           grant.addToStage(scope.stage);
           butterflies = [];
 
-          var count = 0;
+          var butterflyColors = ['blue', 'green', 'orange', 'red', 'violet', 'yellow'];
           (function addNewButterfly() {
 
             setTimeout(function () {
-              var butterfly = new Butterfly({
-                butterflyAssetName: 'butterfly',
-                y: h/2 - (h/2 * Math.random()),
-                x: w,
-                color: 'red'
-              });
+              var butterflyColor = butterflyColors[Math.floor(Math.random()*butterflyColors.length)],
+                butterfly = new Butterfly({
+                  butterflyAssetName: 'butterfly-' + butterflyColor,
+                  y: h/2 - (h/2 * Math.random()),
+                  x: w,
+                  color: butterflyColor
+                });
               butterfly.addToStage(scope.stage);
-
               butterflies.push(butterfly);
-              if(count < 5) {
-                count++;
-                addNewButterfly();
-              }
+              addNewButterfly();
             }, 1000);
           }());
 
