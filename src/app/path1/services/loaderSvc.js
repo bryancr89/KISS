@@ -4,7 +4,7 @@
   angular.module('path1')
     .service('loaderSvc', function () {
       var manifest = [
-        {src: 'characters/baula_sprite.png', id: 'grant'},
+        {src: 'characters/baula_sprite.png', id: 'character'},
         {src: 'characters/baula/blue_char.png', id: 'baula-blue'},
         {src: 'characters/baula/green_char.png', id: 'baula-green'},
         {src: 'characters/baula/orange_char.png', id: 'baula-orange'},

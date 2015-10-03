@@ -7,7 +7,7 @@
     var player = {
       points: 0,
       name: '',
-      character: ''
+      character: 'colibri'
     };
 
     return {

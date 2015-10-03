@@ -13,11 +13,12 @@
         width: '=width',
         height: '=height',
         score: '=score',
-        lifesCount: '=lifesCount'
+        lifesCount: '=lifesCount',
+        player: '='
       },
       template: "<canvas></canvas>",
       link: function (scope, element, attribute) {
-        var w, h, sky, grant, ground, butterflies, runningSoundInstance, logo;
+        var w, h, sky, character, ground, butterflies, runningSoundInstance, logo;
         drawGame();
         element[0].width = scope.width;
         element[0].height = scope.height;
@@ -39,25 +40,35 @@
         }
 
         function handleComplete() {
-          sky = new Sky({width: w, height: h});
-          sky.addToStage(scope.stage);
-          logo = new Logo({y: 10});
-          logo.setHorizontalCenterAt(w / 2);
-          logo.addToStage(scope.stage);
+          var colorPickTimerId,
+            butterflyColors = ['blue', 'green', 'orange', 'red', 'violet', 'yellow'],
+            colorToPick = butterflyColors[Math.floor(Math.random() * butterflyColors.length)];
+
           ground = new Ground({width: w, height: h});
           ground.addToStage(scope.stage);
-          grant = new Character({characterAssetName: 'grant', y: 200, x: 300});
-          grant.addToStage(scope.stage);
+          character = new Character({
+            character: scope.player.character,
+            characterAssetName: getCharacter(colorToPick),
+            x: 300,
+            y: 200
+          });
+          character.addToStage(scope.stage);
           butterflies = [];
 
-          var butterflyColors = ['blue', 'green', 'orange', 'red', 'violet', 'yellow'];
-          (function addNewButterfly() {
+          function getRandomColor() {
+            return butterflyColors[Math.floor(Math.random() * butterflyColors.length)];
+          }
 
+          function getCharacter(color) {
+            return scope.player.character + '-' + color;
+          }
+
+          (function addNewButterfly() {
             setTimeout(function () {
-              var butterflyColor = butterflyColors[Math.floor(Math.random()*butterflyColors.length)],
+              var butterflyColor = getRandomColor(),
                 butterfly = new Butterfly({
                   butterflyAssetName: 'butterfly-' + butterflyColor,
-                  y: h/2 - (h/2 * Math.random()),
+                  y: h / 2 - (h / 2 * Math.random()),
                   x: w,
                   color: butterflyColor
                 });
@@ -67,7 +78,19 @@
             }, 1000);
           }());
 
-
+          colorPickTimerId = setInterval(function () {
+            colorToPick = getRandomColor();
+            var x = character.getX(),
+              y = character.getY();
+            character.removeFromStage(scope.stage);
+            character = new Character({
+              character: scope.player.character,
+              characterAssetName: getCharacter(colorToPick),
+              x: x,
+              y: y
+            });
+            character.addToStage(scope.stage);
+          }, 5000);
 
           scope.stage.addEventListener("stagemousedown", handleJumpStart);
           createjs.Ticker.timingMode = createjs.Ticker.RAF;
@@ -79,6 +102,10 @@
           scope.score = 10;
           scope.lifesCount = 2;
           scope.$apply();
+
+          scope.$on('$destroy', function () {
+            colorPickTimerId();
+          });
         }
 
         function keydown(event) {
@@ -102,7 +129,7 @@
         function handleJumpStart() {
           if (scope.status === "running") {
             createjs.Sound.play("jumpingSound");
-            grant.playAnimation("jump");
+            character.playAnimation("jump");
           }
         }
 
@@ -112,12 +139,12 @@
 
         function tick(event) {
           var deltaS = event.delta / 1000;
-          var position = grant.getX() + 150 * deltaS;
+          var position = character.getX() + 150 * deltaS;
 
-          grant.setX((position >= w + grant.getWidth()) ? -grant.getWidth() : position);
+          character.setX((position >= w + character.getWidth()) ? -character.getWidth() : position);
           ground.setX((ground.getX() - deltaS * 150) % ground.getTileWidth());
 
-          butterflies.forEach(function(butterfly) {
+          butterflies.forEach(function (butterfly) {
             moveButterfly(butterfly, deltaS);
           });
           scope.stage.update(event);
