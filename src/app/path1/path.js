@@ -4,12 +4,13 @@
     .controller('PathOneController', PathOneController);
 
   /** @ngInject */
-  function PathOneController($scope, $window, PlayerService) {
+  function PathOneController($scope, $window, PlayerService, GameService) {
     var vm = this;
     $scope.windowWidth = $window.innerWidth;
     $scope.gameHeight = 600;
     $scope.score = 0;
     $scope.lifesCount = 3;
+    this.game = GameService.getGame();
     this.player = PlayerService.getPlayer();
   }
 })();

@@ -4,7 +4,7 @@
   angular.module('path1')
     .directive('spriteSheetRunner', spriteSheetRunner);
   /** @ngInject */
-  function spriteSheetRunner(loaderSvc, Sky, Ground, Character, Butterfly, Logo) {
+  function spriteSheetRunner(loaderSvc, Sky, Ground, Character, Butterfly, GameService) {
     "use strict";
     return {
       restrict: 'EAC',
@@ -18,12 +18,17 @@
       },
       template: "<canvas></canvas>",
       link: function (scope, element, attribute) {
-        var w, h, sky, character, ground, butterflies, runningSoundInstance, logo;
+        var w, h, character, ground, butterflies, runningSoundInstance;
         drawGame();
         element[0].width = scope.width;
         element[0].height = scope.height;
         w = scope.width;
         h = scope.height;
+        GameService.init(function validateAction(color) {
+
+        });
+        scope.game = GameService.getGame();
+
         function drawGame() {
           //drawing the game canvas from scratch here
           if (scope.stage) {
@@ -39,57 +44,64 @@
           loaderSvc.loadAssets();
         }
 
+        function getRandomColor(butterflyColors) {
+          return butterflyColors[Math.floor(Math.random() * butterflyColors.length)];
+        }
+
+        function getCharacter(color) {
+          return scope.player.character + '-' + color;
+        }
+
+        function addNewButterfly(butterflyColors) {
+          setTimeout(function () {
+            var butterflyColor = getRandomColor(butterflyColors),
+              butterfly = new Butterfly({
+                butterflyAssetName: 'butterfly-' + butterflyColor,
+                y: h / 2 - (h / 2 * Math.random()),
+                x: w,
+                color: butterflyColor,
+                validateAction: function() {
+                  (this.color == scope.currentValidColor) ? GameService.validAction() : GameService.invalidAction();
+                  scope.$apply();
+                }
+              });
+            butterfly.addToStage(scope.stage);
+            butterflies.push(butterfly);
+            addNewButterfly(butterflyColors);
+          }, 1000);
+        }
+
         function handleComplete() {
           var colorPickTimerId,
-            butterflyColors = ['blue', 'green', 'orange', 'red', 'violet', 'yellow'],
-            colorToPick = butterflyColors[Math.floor(Math.random() * butterflyColors.length)];
+            butterflyColors = ['blue', 'green', 'orange', 'red', 'violet', 'yellow'];
 
+          scope.currentValidColor = getRandomColor(butterflyColors);
           ground = new Ground({width: w, height: h});
           ground.addToStage(scope.stage);
           character = new Character({
             character: scope.player.character,
-            characterAssetName: getCharacter(colorToPick),
+            characterAssetName: getCharacter(scope.currentValidColor),
             x: 300,
             y: 200
           });
           character.addToStage(scope.stage);
           butterflies = [];
 
-          function getRandomColor() {
-            return butterflyColors[Math.floor(Math.random() * butterflyColors.length)];
-          }
-
-          function getCharacter(color) {
-            return scope.player.character + '-' + color;
-          }
-
-          (function addNewButterfly() {
-            setTimeout(function () {
-              var butterflyColor = getRandomColor(),
-                butterfly = new Butterfly({
-                  butterflyAssetName: 'butterfly-' + butterflyColor,
-                  y: h / 2 - (h / 2 * Math.random()),
-                  x: w,
-                  color: butterflyColor
-                });
-              butterfly.addToStage(scope.stage);
-              butterflies.push(butterfly);
-              addNewButterfly();
-            }, 1000);
-          }());
+          addNewButterfly(butterflyColors);
 
           colorPickTimerId = setInterval(function () {
-            colorToPick = getRandomColor();
+            scope.currentValidColor = getRandomColor(butterflyColors);
             var x = character.getX(),
               y = character.getY();
             character.removeFromStage(scope.stage);
             character = new Character({
               character: scope.player.character,
-              characterAssetName: getCharacter(colorToPick),
+              characterAssetName: getCharacter(scope.currentValidColor),
               x: x,
               y: y
             });
             character.addToStage(scope.stage);
+            scope.$apply();
           }, 5000);
 
           scope.stage.addEventListener("stagemousedown", handleJumpStart);
