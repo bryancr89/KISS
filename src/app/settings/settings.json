@@ -1,25 +1,16 @@
 [
   {
-<<<<<<< Updated upstream
     "id": "completeWorldTime",
-=======
-    "id": "1",
->>>>>>> Stashed changes
     "name": "Tiempo para completar un mundo",
     "value": "10000"
   },
 	{
-<<<<<<< Updated upstream
     "id": "initialLifes",
-=======
     "id": "2",
->>>>>>> Stashed changes
     "name": "Cantidad de vidas iniciales",
     "value": "5"
 	},
-
   {
-<<<<<<< Updated upstream
     "id": "pointsToWin",
     "name": "Cantidad de puntos para ganar una vida",
     "value": "1000"
@@ -47,35 +38,7 @@
   {
     "id": "deployObjectsTime",
     "name": "Tiempo de despliegue objetos mundo uno",
-=======
-    "name": "Cantidad de puntos para ganar una vida",
     "id": "3",
     "value": "1000"
-  },
-  {
-    "name": "Cantidad de puntos acierto camino",
-    "id": "4",
-    "value": "4000"
-  },
-  {
-    "name": "Cantidad de puntos error camino",
-    "id": "5",
-    "value": "50"
-  },
-  {
-    "name": "Cantidad de puntos para acceder a un mundo",
-    "id": "6",
-    "value": "8000"
-  },
-  {
-    "name": "Cantidad de puntos al ganar un mundo",
-    "id": "7",
-    "value": "15000"
-  },
-  {
-    "name": "Tiempo de despliegue objetos mundo uno",
-    "id": "8",
->>>>>>> Stashed changes
-    "value": "100"
   }
 ]
