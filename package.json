@@ -1,7 +1,9 @@
 {
   "name": "kiss",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "jsonfile": "^2.2.2"
+  },
   "scripts": {
     "test": "gulp test"
   },
