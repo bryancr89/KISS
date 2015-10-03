@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-
+  /**/
   angular.module('kiss').controller('PlayerController', PlayerController);
 
   /** @ngInject */
