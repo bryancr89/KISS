@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -6,34 +6,67 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
+  function MainController(PlayerService) {
     var vm = this;
+    vm.gameOptions = {
+      playerName: '',
+      character: '',
+      difficulty: ''
+    };
 
-    vm.awesomeThings = [];
-    vm.classAnimation = '';
-    vm.creationDate = 1443886988055;
-    vm.showToastr = showToastr;
-
-    activate();
-
-    function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
+    vm.playerName = '';
+    vm.currentStep = 0;
+    vm.characters = ['baula', 'colibri', 'jaguar', 'mono', 'perezoso', 'rana', 'tucan', 'venado'];
+    vm.difficultyLevels = ['Facil', 'Moderado', 'Dificil'];
+    function nextStepCount() {
+      vm.currentStep++;
     }
 
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
-    }
+    vm.stepBack = function stepBack() {
+      if (vm.currentStep > 0) {
+        vm.currentStep--;
+      }
+    };
 
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
+    vm.steps = [{
+      name: 'step zero',
+      nextStep: nextStepCount,
+      nextIsDisabled: function nextIsDisabled() {
+        return false;
+      }
+    }, {
+      name: 'step one',
+      nextStep: function (character) {
+        nextStepCount();
+        vm.gameOptions.character = character;
+        PlayerService.setCharacter(vm.gameOptions.character).setName(vm.gameOptions.playerName);
+      },
+      nextIsDisabled: function nextIsDisabled() {
+        return !vm.gameOptions.character.trim();
+      }
+    }, {
+      name: 'step two',
+      nextStep: function () {
+        nextStepCount();
+        PlayerService.setName(vm.gameOptions.playerName);
+      },
+      isPlayerNameEnabled: function () {
+        return !!vm.gameOptions.character.trim();
+      },
+      nextIsDisabled: function nextIsDisabled() {
+        return !vm.gameOptions.playerName.trim();
+      }
+    }, {
+      name: 'step two',
+      nextStep: function () {
+        nextStepCount();
+        vm.gameOptions.difficulty = difficulty;
+        PlayerService.setDifficulty(vm.gameOptions.difficulty);
+      },
+      nextIsDisabled: function nextIsDisabled() {
+        return !vm.gameOptions.difficulty.trim();
+      }
+    }];
 
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
-    }
   }
 })();
