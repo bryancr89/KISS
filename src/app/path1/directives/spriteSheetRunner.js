@@ -4,7 +4,7 @@
   angular.module('path1')
     .directive('spriteSheetRunner', spriteSheetRunner);
   /** @ngInject */
-  function spriteSheetRunner(loaderSvc, Sky, Ground, Hill, Character, Butterfly, Logo) {
+  function spriteSheetRunner(loaderSvc, Sky, Ground, Character, Butterfly, Logo) {
     "use strict";
     return {
       restrict: 'EAC',
@@ -17,7 +17,7 @@
       },
       template: "<canvas></canvas>",
       link: function (scope, element, attribute) {
-        var w, h, sky, grant, butterfly, ground, hill, hill2, runningSoundInstance, logo;
+        var w, h, sky, grant, ground, butterflies, runningSoundInstance, logo;
         drawGame();
         element[0].width = scope.width;
         element[0].height = scope.height;
@@ -45,16 +45,32 @@
           logo.setHorizontalCenterAt(w / 2);
           logo.addToStage(scope.stage);
           ground = new Ground({width: w, height: h});
-          hill = new Hill({width: w, height: h, scaleFactor: 4, assetName: 'hill', groundHeight: ground.getHeight()});
-          hill.setAlpha(0.5);
-          hill.addToStage(scope.stage);
-          hill2 = new Hill({width: w, height: h, scaleFactor: 3, assetName: 'hill2', groundHeight: ground.getHeight()});
-          hill2.addToStage(scope.stage);
           ground.addToStage(scope.stage);
           grant = new Character({characterAssetName: 'grant', y: 200, x: 300});
           grant.addToStage(scope.stage);
-          butterfly = new Butterfly({butterflyAssetName: 'butterfly', y: 100, x: 1200});
-          butterfly.addToStage(scope.stage);
+          butterflies = [];
+
+          var count = 0;
+          (function addNewButterfly() {
+
+            setTimeout(function () {
+              var butterfly = new Butterfly({
+                butterflyAssetName: 'butterfly',
+                y: h/2 - (h/2 * Math.random()),
+                x: w,
+                color: 'red'
+              });
+              butterfly.addToStage(scope.stage);
+
+              butterflies.push(butterfly);
+              if(count < 5) {
+                count++;
+                addNewButterfly();
+              }
+            }, 1000);
+          }());
+
+
 
           scope.stage.addEventListener("stagemousedown", handleJumpStart);
           createjs.Ticker.timingMode = createjs.Ticker.RAF;
@@ -93,22 +109,20 @@
           }
         }
 
+        function moveButterfly(butterfly, deltaS) {
+          butterfly.setX((butterfly.getX() - deltaS * 100));
+        }
+
         function tick(event) {
           var deltaS = event.delta / 1000;
           var position = grant.getX() + 150 * deltaS;
-          var positionButterFly = butterfly.getX() - 150 * deltaS;
 
           grant.setX((position >= w + grant.getWidth()) ? -grant.getWidth() : position);
-          butterfly.setX((butterfly.getX() - deltaS * 100));
           ground.setX((ground.getX() - deltaS * 150) % ground.getTileWidth());
-          hill.move(deltaS * -30, 0);
-          if (hill.getX() + hill.getImageWidth() * hill.getScaleX() <= 0) {
-            hill.setX(w);
-          }
-          hill2.move(deltaS * -45, 0);
-          if (hill2.getX() + hill2.getImageWidth() * hill2.getScaleX() <= 0) {
-            hill2.setX(w);
-          }
+
+          butterflies.forEach(function(butterfly) {
+            moveButterfly(butterfly, deltaS);
+          });
           scope.stage.update(event);
         }
       }

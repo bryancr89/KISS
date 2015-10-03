@@ -11,6 +11,5 @@
     $scope.score = 0;
     $scope.lifesCount = 3;
     this.player = PlayerService.getPlayer();
-
   }
 })();

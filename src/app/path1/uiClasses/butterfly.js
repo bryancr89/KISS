@@ -13,10 +13,15 @@
             "run": [0, 3, "run", 1.5]
           }
         });
+
         this.butterfly = new createjs.Sprite(spriteSheet, "run");
+        this.butterfly.color = obj.color;
         this.butterfly.y = obj.y;
         this.butterfly.x = obj.x;
 
+        this.butterfly.on('mousedown', function() {
+          this.parent.removeChild(this);
+        });
       }
       Butterfly.prototype = {
         addToStage: function (stage) {
