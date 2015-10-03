@@ -1,38 +1,81 @@
-{
+[
+  {
+<<<<<<< Updated upstream
+    "id": "completeWorldTime",
+=======
+    "id": "1",
+>>>>>>> Stashed changes
+    "name": "Tiempo para completar un mundo",
+    "value": "10000"
+  },
 	{
-	 'name':'Cantidad de vidas iniciales',
-	 'code':'1',
-	 'value':'5'
+<<<<<<< Updated upstream
+    "id": "initialLifes",
+=======
+    "id": "2",
+>>>>>>> Stashed changes
+    "name": "Cantidad de vidas iniciales",
+    "value": "5"
 	},
-	{
-	 'name':'Cantidad de puntos para ganar una vida',
-	 'code':'2',
-	 'value':'200'
-	},
-	{
-	 'name':'Cantidad de puntos acierto camino',
-	 'code':'3',
-	 'value':'4'
-	},
-	{
-	 'name':'Cantidad de puntos error camino',
-	 'code':'3',
-	 'value':'4'
-	},
-	{
-	 'name':'Cantidad de puntos para acceder a un mundo',
-	 'code':'3',
-	 'value':'4'
-	},
-	{
-	 'name':'Cantidad de puntos al ganar un mundo',
-	 'code':'3',
-	 'value':'4'
-	},
-	{
-	 'name':'Tiempo de despliegue objetos mundo uno',
-	 'code':'3',
-	 'value':'4'
-	}
 
-}
+  {
+<<<<<<< Updated upstream
+    "id": "pointsToWin",
+    "name": "Cantidad de puntos para ganar una vida",
+    "value": "1000"
+  },
+  {
+    "id": "pointsSuccess",
+    "name": "Cantidad de puntos acierto camino",
+    "value": "4000"
+  },
+  {
+    "id": "pointsFail",
+    "name": "Cantidad de puntos error camino",
+    "value": "50"
+  },
+  {
+    "id": "pointsToAccessWorld",
+    "name": "Cantidad de puntos para acceder a un mundo",
+    "value": "8000"
+  },
+  {
+    "id": "pointsAtWinningWorld",
+    "name": "Cantidad de puntos al ganar un mundo",
+    "value": "15000"
+  },
+  {
+    "id": "deployObjectsTime",
+    "name": "Tiempo de despliegue objetos mundo uno",
+=======
+    "name": "Cantidad de puntos para ganar una vida",
+    "id": "3",
+    "value": "1000"
+  },
+  {
+    "name": "Cantidad de puntos acierto camino",
+    "id": "4",
+    "value": "4000"
+  },
+  {
+    "name": "Cantidad de puntos error camino",
+    "id": "5",
+    "value": "50"
+  },
+  {
+    "name": "Cantidad de puntos para acceder a un mundo",
+    "id": "6",
+    "value": "8000"
+  },
+  {
+    "name": "Cantidad de puntos al ganar un mundo",
+    "id": "7",
+    "value": "15000"
+  },
+  {
+    "name": "Tiempo de despliegue objetos mundo uno",
+    "id": "8",
+>>>>>>> Stashed changes
+    "value": "100"
+  }
+]
