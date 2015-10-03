@@ -1,0 +1,16 @@
+/**
+ * Created by Fabricio Salazar on 10/3/2015.
+ */
+
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+
+app.use(express.static(__dirname + '/dist'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+var port = process.env.PORT || 8080;
+
+app.listen(port);
+console.log("Server running");
