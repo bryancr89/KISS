@@ -5,7 +5,13 @@
     .factory("Character", ['loaderSvc', function (loaderSvc) {
       var frames = {
         baula: {"regX": 10, "height": 355, "count": 3, "regY": 0, "width": 261},
-        colibri: {"regX": 0, "height": 355, "count": 3, "regY": 0, "width": 340}
+        colibri: {"regX": 0, "height": 355, "count": 3, "regY": 0, "width": 340},
+        jaguar: {"regX": 0, "height": 355, "count": 3, "regY": 0, "width": 260},
+        mono: {"regX": 0, "height": 355, "count": 3, "regY": 0, "width": 260},
+        perezoso: {"regX": 0, "height": 355, "count": 3, "regY": 0, "width": 260},
+        rana: {"regX": 0, "height": 355, "count": 3, "regY": 0, "width": 260},
+        tucan: {"regX": 0, "height": 355, "count": 3, "regY": 0, "width": 360},
+        venado: {"regX": 0, "height": 355, "count": 3, "regY": 0, "width": 260}
       };
 
       function Character(obj) {

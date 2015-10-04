@@ -85,6 +85,7 @@
             y: 200
           });
           character.addToStage(scope.stage);
+
           butterflies = [];
 
           addNewButterfly(butterflyColors);
