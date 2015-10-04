@@ -25,7 +25,13 @@
         templateUrl: 'app/settings/settings.html',
         controller: 'SettingsController',
         controllerAs: 'settingsController'
+      })
+	  .state('worldOne', {
+        url: '/worldOne',
+        templateUrl: 'app/world1/world1.html',
+        controllerAs: 'mundoUno'
       });
+
 
     $urlRouterProvider.otherwise('/');
   }

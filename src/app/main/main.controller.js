@@ -62,7 +62,7 @@
         nextStepCount();
         vm.gameOptions.difficulty = difficulty;
         PlayerService.setDifficulty(vm.gameOptions.difficulty);
-        $state.go('path1');
+        //$state.go('path1');
       },
       nextIsDisabled: function nextIsDisabled() {
         return !vm.gameOptions.difficulty.trim();

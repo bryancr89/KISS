@@ -40,6 +40,49 @@
   border: 1px solid cornflowerblue;
 }
 
+body{
+ background: rgba(164, 117, 30, 0.75);
+}
+.worlds-container{
+    width: 100%;
+    background: rgba(164, 117, 30, 0.75);
+    height: 700px;
+	>div{
+		position: relative;
+		float: left;
+		width: 30%;
+		height: 600px;
+		background: white;
+		margin: 15px;
+
+		>div{
+			position: relative;
+			float: left;
+			width: 90%;
+			height: 200px;
+			background: black;
+			margin: 15px;
+			border: 1px solid red;
+			border-radius: 90px;	
+		}
+		>div:hover{
+			opacity: 0.4;
+			cursor: pointer;
+			
+		}
+		.way-one{
+			background-image: url('../assets/path1/FISERV-PROGRAMATHON-CAMINO1-FONDO_FONDO.png');
+			background-size: cover;
+		}
+		.world-one{
+			background-image: url('../assets/world1/FISERV-PROGRAMATHON-JUEGO-MUNDO-1-CAMPOFERIAL_FONDO.png');
+			background-size: cover;
+		}
+	}
+	
+		
+}
+
 /**
  *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
  *  all your less files automatically
