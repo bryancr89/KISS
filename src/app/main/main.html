@@ -18,7 +18,7 @@
     <div class="step" ng-if="main.currentStep == 2">
       <div ng-if="main.steps[2].isPlayerNameEnabled()">
         <h2>Escoja un nombre</h2>
-        <input placeholder="Nombre" type="text" ng-model="main.gameOptions.playerName" maxlength="20" class="choose-name">
+        <input placeholder="Nombre" type="text" ng-model="main.gameOptions.playerName" ng-value="main.gameOptions.playerName" maxlength="20" class="choose-name">
       </div>
       <button class="btn btn-primary" ng-click="main.steps[2].nextStep()" ng-disabled="main.steps[2].nextIsDisabled()">
         Continuar

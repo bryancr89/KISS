@@ -6,16 +6,12 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($state, PlayerService) {
+  function MainController($state, $stateParams, PlayerService) {
     var vm = this;
-    vm.gameOptions = {
-      playerName: '',
-      character: '',
-      difficulty: ''
-    };
+    vm.gameOptions = PlayerService.getPlayer();
 
     vm.playerName = '';
-    vm.currentStep = 0;
+    vm.currentStep = $stateParams.step || 0;
     vm.characters = ['baula', 'colibri', 'jaguar', 'mono', 'perezoso', 'rana', 'tucan', 'venado'];
     vm.difficultyLevels = [{
       text: 'Fácil',

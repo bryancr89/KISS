@@ -33,7 +33,7 @@
           {
             "id": "initialLifes",
             "name": "Cantidad de vidas iniciales",
-            "value": "5"
+            "value": 1
           },
           {
             "id": "pointsToWin",
@@ -43,7 +43,7 @@
           {
             "id": "pointsSuccess",
             "name": "Cantidad de puntos acierto camino",
-            "value": "4000"
+            "value": 10
           },
           {
             "id": "pointsFail",

@@ -53,6 +53,9 @@
       },
       validAction: function () {
         game.points += game.pointsToWin;
+        if(game.points >= game.pointsToWin) {
+          game.lives++;
+        }
       },
       invalidAction: function () {
         game.points += -game.pointsFail;

@@ -8,7 +8,8 @@
       lives: 0,
       points: 0,
       name: '',
-      character: 'perezoso'
+      character: 'perezoso',
+      difficulty: ''
     };
 
     return {

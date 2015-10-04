@@ -17,7 +17,7 @@
   {
     "id": "pointsSuccess",
     "name": "Cantidad de puntos acierto camino",
-    "value": 40
+    "value": 20
   },
   {
     "id": "pointsFail",

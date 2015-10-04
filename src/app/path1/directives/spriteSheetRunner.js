@@ -4,7 +4,7 @@
   angular.module('path1')
     .directive('spriteSheetRunner', spriteSheetRunner);
   /** @ngInject */
-  function spriteSheetRunner(loaderSvc, Sky, Ground, Character, Butterfly, GameService) {
+  function spriteSheetRunner($state, loaderSvc, Sky, Ground, Character, Butterfly, GameService, GameDialogsService) {
     'use strict';
     return {
       restrict: 'EAC',
@@ -14,19 +14,29 @@
         height: '=height',
         score: '=score',
         lifesCount: '=lifesCount',
-        player: '='
+        player: '=',
+        stop: '='
       },
       template: '<canvas></canvas>',
       link: function (scope, element, attribute) {
         var w, h, character, ground, butterflies, runningSoundInstance;
-        drawGame();
         element[0].width = scope.width;
         element[0].height = scope.height;
         w = scope.width;
         h = scope.height;
-        GameService.init();
-        scope.game = GameService.getGame();
-        scope.difficulty = GameService.getDifficulty(scope.player.difficulty);
+
+        function start() {
+          drawGame();
+          GameService.init();
+          scope.game = GameService.getGame();
+          scope.difficulty = GameService.getDifficulty(scope.player.difficulty);
+        }
+        start();
+
+        function stop() {
+          createjs.Ticker.removeEventListener('tick', tick);
+          createjs.Sound.stop();
+        }
 
         function drawGame() {
           //drawing the game canvas from scratch here
@@ -51,6 +61,25 @@
           return scope.player.character + '-' + color;
         }
 
+        function shouldDisplayADialog() {
+          if (scope.game.lives === 0) {
+            stop();
+            GameDialogsService.loseGame().closePromise.then(function () {
+              start();
+            });
+          }
+          else if (scope.game.points === 0 && scope.game.lives !== 0) {
+            GameDialogsService.loseLive();
+          } else if (scope.game.points >= scope.game.pointsSuccess) {
+            stop();
+            GameDialogsService.wonGame().closePromise.then(function () {
+              $state.go('home', {step: 4})
+            });
+          } else if (scope.game.points >= scope.game.pointsToWin) {
+            GameDialogsService.gainLive();
+          }
+        }
+
         function addNewButterfly(butterflyColors) {
           setTimeout(function () {
             var butterflyColor = getRandomColor(butterflyColors),
@@ -59,9 +88,10 @@
                 y: h / 2 - (h / 2 * Math.random()),
                 x: w,
                 color: butterflyColor,
-                validateAction: function() {
+                validateAction: function () {
                   (this.color == scope.currentValidColor) ? GameService.validAction() : GameService.invalidAction();
                   scope.$apply();
+                  shouldDisplayADialog();
                 }
               });
             butterfly.addToStage(scope.stage);
@@ -86,7 +116,6 @@
           character.addToStage(scope.stage);
 
           butterflies = [];
-
           addNewButterfly(butterflyColors);
 
           colorPickTimerId = setInterval(function () {
@@ -104,7 +133,6 @@
             scope.$apply();
           }, scope.difficulty.timeChangeColor);
 
-          scope.stage.addEventListener('stagemousedown', handleJumpStart);
           createjs.Ticker.timingMode = createjs.Ticker.RAF;
           createjs.Ticker.addEventListener('tick', tick);
           // start playing the running sound looping indefinitely
@@ -115,15 +143,11 @@
 
           scope.$on('$destroy', function () {
             clearInterval(colorPickTimerId);
-            createjs.Ticker.removeEventListener('tick', tick);
-            createjs.Sound.stop();
+            stop();
           });
         }
 
         function keydown(event) {
-          if (event.keyCode === 38) {//if keyCode is 'Up'
-            handleJumpStart();
-          }
           if (event.keyCode === 39) {//if keyCode is 'Right'
             if (scope.status === 'paused') {
               createjs.Ticker.addEventListener('tick', tick);
@@ -135,13 +159,6 @@
             createjs.Ticker.removeEventListener('tick', tick);
             createjs.Sound.stop();
             scope.status = 'paused';
-          }
-        }
-
-        function handleJumpStart() {
-          if (scope.status === 'running') {
-            createjs.Sound.play('jumpingSound');
-            character.playAnimation('jump');
           }
         }
 

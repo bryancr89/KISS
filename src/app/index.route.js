@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -12,7 +12,8 @@
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        params: {step: 0}
       })
       .state('path1', {
         url: '/path1',
@@ -26,10 +27,10 @@
         controller: 'SettingsController',
         controllerAs: 'settingsController'
       })
-	  .state('worldOne', {
+      .state('worldOne', {
         url: '/worldOne',
         templateUrl: 'app/world1/world1.html',
-		 controller: 'worldOneController.js',
+        controller: 'worldOneController.js',
         controllerAs: 'worldOneController'
       });
 
