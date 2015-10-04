@@ -1,17 +1,13 @@
-
-<div class="wideBox">
-  <h1></h1>
-  <h2></h2>
-</div>
-
-<div id="content">
-	<div id="cardPile">
-	</div>
-  <div id="cardSlots"> </div>
-
-  <div id="successMessage">
-    <h2>Gano</h2>
-    <button onclick="init()">Volver a Jugar</button>
+<div class="world1">
+  <div>{{worldOneController.disordedList}}</div>
+  <div>{{worldOneController.timer/1000}}</div>
+  <div class="background">
+    <img src="assets/world1/{{worldOneController.scenarioKey}}/{{worldOneController.scenario.background}}.png">
   </div>
+  <ul class="card-container" ng-hide="worldOneController.waiting">
+    <li class="card" ng-repeat="item in worldOneController.disordedList" data-drop="worldOneController.canDragDrop" data-drag="worldOneController.canDragDrop" ng-model="worldOneController.disordedList" jqyoui-droppable="{index: {{$index}}, onDrop: 'worldOneController.dropCallback'}" jqyoui-draggable="{index: {{$index}}, insertInline: true, direction:'jqyouiDirection'}" data-jqyoui-options="{revert: 'invalid'}" data-direction="{{item.jqyouiDirection}}">
+      <img src="assets/world1/{{worldOneController.scenarioKey}}/{{item.title}}.png">
+    </li>
+  </ul>
+
 </div>
-<script src="../bower_components/jquery-ui/jquery-ui.js" type="application/javascript"></script>

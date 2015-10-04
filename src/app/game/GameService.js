@@ -7,17 +7,33 @@
   function GameService(SettingsService) {
     var initialLives,
       difficulty = {
-        easy: {
-          timeElementsToAdd: 5000,
-          timeChangeColor: 10000
+        worldOne: {
+          easy: {
+            elementsToDisplay: 5,
+            timeToRememberElements: 2000
+          },
+          medium: {
+            elementsToDisplay: 10,
+            timeToRememberElements: 4000
+          },
+          hard: {
+            elementsToDisplay: 15,
+            timeToRememberElements: 6000
+          }
         },
-        medium: {
-          timeElementsToAdd: 2500,
-          timeChangeColor: 5000
-        },
-        hard: {
-          timeElementsToAdd: 1000,
-          timeChangeColor: 3000
+        path1: {
+          easy: {
+            timeElementsToAdd: 5000,
+            timeChangeColor: 10000
+          },
+          medium: {
+            timeElementsToAdd: 2500,
+            timeChangeColor: 5000
+          },
+          hard: {
+            timeElementsToAdd: 1000,
+            timeChangeColor: 3000
+          }
         }
       },
       game = {
@@ -74,8 +90,8 @@
       getGame: function getGame() {
         return game;
       },
-      getDifficulty: function getDifficulty(type) {
-        return difficulty[type];
+      getDifficulty: function getDifficulty(game, type) {
+        return difficulty[game][type];
       }
 
     };

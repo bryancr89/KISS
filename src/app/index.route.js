@@ -30,7 +30,7 @@
       .state('worldOne', {
         url: '/worldOne',
         templateUrl: 'app/world1/world1.html',
-        controller: 'worldOneController.js',
+        controller: 'WorldOneController',
         controllerAs: 'worldOneController'
       });
 

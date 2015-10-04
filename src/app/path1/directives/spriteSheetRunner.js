@@ -29,7 +29,7 @@
           drawGame();
           GameService.init();
           scope.game = GameService.getGame();
-          scope.difficulty = GameService.getDifficulty(scope.player.difficulty);
+          scope.difficulty = GameService.getDifficulty('path1', scope.player.difficulty);
         }
         start();
 
