@@ -18,13 +18,13 @@
     vm.currentStep = 0;
     vm.characters = ['baula', 'colibri', 'jaguar', 'mono', 'perezoso', 'rana', 'tucan', 'venado'];
     vm.difficultyLevels = [{
-      text: 'Facil',
+      text: 'Fácil',
       value: 'easy'
     }, {
       text: 'Intermedio',
       value: 'medium'
     }, {
-      text: 'Dificil',
+      text: 'Difícil',
       value: 'hard'
     }];
     function nextStepCount() {
