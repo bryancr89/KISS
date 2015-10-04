@@ -5,7 +5,7 @@
     .directive('spriteSheetRunner', spriteSheetRunner);
   /** @ngInject */
   function spriteSheetRunner(loaderSvc, Sky, Ground, Character, Butterfly, GameService) {
-    "use strict";
+    'use strict';
     return {
       restrict: 'EAC',
       replace: true,
@@ -16,7 +16,7 @@
         lifesCount: '=lifesCount',
         player: '='
       },
-      template: "<canvas></canvas>",
+      template: '<canvas></canvas>',
       link: function (scope, element, attribute) {
         var w, h, character, ground, butterflies, runningSoundInstance;
         drawGame();
@@ -39,7 +39,7 @@
           }
           w = scope.stage.canvas.width;
           h = scope.stage.canvas.height;
-          loaderSvc.getLoader().addEventListener("complete", handleComplete);
+          loaderSvc.getLoader().addEventListener('complete', handleComplete);
           loaderSvc.loadAssets();
         }
 
@@ -104,42 +104,44 @@
             scope.$apply();
           }, scope.difficulty.timeChangeColor);
 
-          scope.stage.addEventListener("stagemousedown", handleJumpStart);
+          scope.stage.addEventListener('stagemousedown', handleJumpStart);
           createjs.Ticker.timingMode = createjs.Ticker.RAF;
-          createjs.Ticker.addEventListener("tick", tick);
+          createjs.Ticker.addEventListener('tick', tick);
           // start playing the running sound looping indefinitely
-          runningSoundInstance = createjs.Sound.play("runningSound", {loop: -1});
-          scope.status = "running";
+          runningSoundInstance = createjs.Sound.play('runningSound', {loop: -1});
+          scope.status = 'running';
           window.onkeydown = keydown;
           scope.$apply();
 
           scope.$on('$destroy', function () {
-            colorPickTimerId();
+            clearInterval(colorPickTimerId);
+            createjs.Ticker.removeEventListener('tick', tick);
+            createjs.Sound.stop();
           });
         }
 
         function keydown(event) {
-          if (event.keyCode === 38) {//if keyCode is "Up"
+          if (event.keyCode === 38) {//if keyCode is 'Up'
             handleJumpStart();
           }
-          if (event.keyCode === 39) {//if keyCode is "Right"
-            if (scope.status === "paused") {
-              createjs.Ticker.addEventListener("tick", tick);
-              runningSoundInstance = createjs.Sound.play("runningSound", {loop: -1});
-              scope.status = "running";
+          if (event.keyCode === 39) {//if keyCode is 'Right'
+            if (scope.status === 'paused') {
+              createjs.Ticker.addEventListener('tick', tick);
+              runningSoundInstance = createjs.Sound.play('runningSound', {loop: -1});
+              scope.status = 'running';
             }
           }
-          if (event.keyCode === 37) {//if keyCode is "Left"
-            createjs.Ticker.removeEventListener("tick", tick);
+          if (event.keyCode === 37) {//if keyCode is 'Left'
+            createjs.Ticker.removeEventListener('tick', tick);
             createjs.Sound.stop();
-            scope.status = "paused";
+            scope.status = 'paused';
           }
         }
 
         function handleJumpStart() {
-          if (scope.status === "running") {
-            createjs.Sound.play("jumpingSound");
-            character.playAnimation("jump");
+          if (scope.status === 'running') {
+            createjs.Sound.play('jumpingSound');
+            character.playAnimation('jump');
           }
         }
 
