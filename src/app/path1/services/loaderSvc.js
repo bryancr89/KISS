@@ -73,7 +73,7 @@
         {src: 'hill1.png', id: 'hill'},
         {src: 'hill2.png', id: 'hill2'},
         {src: 'logo.png', id: 'logo'},
-        {src: 'runningTrack.mp3', id: 'runningSound'},
+        {src: 'Bike_Rides.mp3', id: 'runningSound'},
         {src: 'jump.mp3', id: 'jumpingSound'}
       ], loader = new createjs.LoadQueue(true);
       createjs.Sound.registerPlugins([createjs.HTMLAudioPlugin]);  // need this so it doesn't default to Web Audio
