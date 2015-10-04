@@ -24,9 +24,7 @@
         element[0].height = scope.height;
         w = scope.width;
         h = scope.height;
-        GameService.init(function validateAction(color) {
-
-        });
+        GameService.init();
         scope.game = GameService.getGame();
 
         function drawGame() {
