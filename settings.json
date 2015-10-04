@@ -12,12 +12,12 @@
   {
     "id": "pointsToWin",
     "name": "Cantidad de puntos para ganar una vida",
-    "value": "1000"
+    "value": 1000
   },
   {
     "id": "pointsSuccess",
     "name": "Cantidad de puntos acierto camino",
-    "value": "4000"
+    "value": 40
   },
   {
     "id": "pointsFail",
