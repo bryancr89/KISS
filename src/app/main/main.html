@@ -38,14 +38,16 @@
     </div>
     <div class="step" ng-if="main.currentStep == 4">
       <h2>Seleccione el camino para empezar</h2>
- 		<h3>Vidas Actuales: {{main.lives}} </h3>
+      <h3>Vidas Actuales: {{main.lives}} </h3>
       <div class="worlds-container">
         <div class="stage-one">
-          <h4>Camino Uno
-          </h4>
+          <h4>Camino Uno</h4>
 
           <div class="way-one" ng-click="main.goTo('path1')">
           </div>
+
+          <a ng-href="javascript:void(0)" ng-click="world1Help()">Ver Ayuda</a>
+
           <h4>Mundo Uno</h4>
 
           <div class="world world-one">

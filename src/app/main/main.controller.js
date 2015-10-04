@@ -7,7 +7,7 @@
 
   /** @ngInject */
 
-  function MainController($state, $stateParams, PlayerService, GameService) {
+  function MainController($state, $stateParams, PlayerService, GameService, $scope, ngDialog) {
     var vm = this;
     vm.gameOptions = PlayerService.getPlayer();
 	  GameService.init().then(function () {
@@ -79,6 +79,16 @@
         return !vm.gameOptions.difficulty.trim();
       }
     }];
+
+    //World 1 Help
+    function world1Help() {
+      var dialog = ngDialog.open({
+        template: '<div class="text-center"><img src="/assets/main/alert_ayuda.png" width="225px" style="margin-bottom: 1em;"><p class="help-text">Para poder acumular puntos en el juego debes dar click sobre la  mariposa que corresponda al color del personaje que elegiste, debes tener cuidado de no seleccionar una mariposa de un color diferente ya que perderás puntos. </p></div>',
+        plain: true
+      });
+    }
+
+    $scope.world1Help = world1Help;
 
   }
 })();
