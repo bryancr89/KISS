@@ -1,11 +1,10 @@
 <div class="scores">
   <span> Nombre: {{pathOne.player.name}}</span>
-  <span> Vidas: {{pathOne.game.numberOfLives}}</span>
+  <span> Vidas: {{pathOne.game.lives}}</span>
   <span> Puntos: {{pathOne.game.points}}</span>
   <span> Caracter: {{pathOne.player.character}}</span>
   <img   src="../assets/characters/{{pathOne.player.character}}.png" alt="" width="60px" height="60px"/>
 </div>
 <sprite-sheet-runner width="windowWidth" height="gameHeight" score="score"
                      lifes-count="lifesCount" player="pathOne.player"></sprite-sheet-runner>
-<span>{{pathOne.player}}</span>
 

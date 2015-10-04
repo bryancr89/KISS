@@ -38,7 +38,7 @@
           {
             "id": "pointsToWin",
             "name": "Cantidad de puntos para ganar una vida",
-            "value": "1000"
+            "value": "10"
           },
           {
             "id": "pointsSuccess",

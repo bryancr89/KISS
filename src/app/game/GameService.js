@@ -58,6 +58,7 @@
         game.points += -game.pointsFail;
         if(game.points < 0) {
           game.lives--;
+          game.points = 0;
         }
       },
       resetGame: function() {
