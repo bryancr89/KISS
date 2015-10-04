@@ -6,10 +6,12 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
+
   function MainController($state, $stateParams, PlayerService) {
     var vm = this;
     vm.gameOptions = PlayerService.getPlayer();
-
+	GameService.init();
+	$scope.lives = GameService.getGame().lives;
     vm.playerName = '';
     vm.currentStep = $stateParams.step || 0;
     vm.characters = ['baula', 'colibri', 'jaguar', 'mono', 'perezoso', 'rana', 'tucan', 'venado'];
