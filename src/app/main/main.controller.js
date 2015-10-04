@@ -31,6 +31,10 @@
       vm.currentStep++;
     }
 
+    vm.goTo = function goTo(path) {
+      $state.go(path);
+    };
+
     vm.stepBack = function stepBack() {
       if (vm.currentStep > 0) {
         vm.currentStep--;

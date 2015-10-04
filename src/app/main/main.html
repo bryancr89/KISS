@@ -39,34 +39,42 @@
       </ul>
       <button class="btn btn-default" ng-click="main.stepBack()">Volver</button>
     </div>
-	<div class="step" ng-if="main.currentStep == 4">
+    <div class="step" ng-if="main.currentStep == 4">
       <h2>Seleccione el camino para empezar</h2>
-		<div class="worlds-container">
-			<div class="stage-one">
-				<h4>Camino Uno</h4>
-				<div class="way-one">
-				</div>
-				<h4>Mundo Uno</h4>
-				<div class="world world-one">
-				</div>
-			</div>
-			<div class="stage-two">
-				<h4>Camino Dos</h4>
-				<div class="way-two">
-				</div>
-				<h4>Mundo Dos</h4>
-				<div class="world world-two">
-				</div>
-			</div>
-			<div class="stage-three">
-				<h4>Camino tres</h4>
-				<div class="way-three">
-				</div>
-				<h4>Mundo Tres</h4>
-				<div class="world world-three">
-				</div>
-			</div>
-		</div>
+
+      <div class="worlds-container">
+        <div class="stage-one">
+          <h4>Camino Uno
+          </h4>
+
+          <div class="way-one" ng-click="main.goTo('path1')">
+          </div>
+          <h4>Mundo Uno</h4>
+
+          <div class="world world-one">
+          </div>
+        </div>
+        <div class="stage-two">
+          <h4>Camino Dos</h4>
+
+          <div class="way-two">
+          </div>
+          <h4>Mundo Dos</h4>
+
+          <div class="world world-two">
+          </div>
+        </div>
+        <div class="stage-three">
+          <h4>Camino tres</h4>
+
+          <div class="way-three">
+          </div>
+          <h4>Mundo Tres</h4>
+
+          <div class="world world-three">
+          </div>
+        </div>
+      </div>
       <button class="btn btn-default" ng-click="main.stepBack()">Volver</button>
     </div>
   </div>
