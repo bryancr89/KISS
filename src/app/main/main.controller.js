@@ -7,12 +7,11 @@
 
   /** @ngInject */
 
-  function MainController($state, $stateParams, PlayerService) {
+  function MainController($state, $stateParams, PlayerService, GameService) {
     var vm = this;
     vm.gameOptions = PlayerService.getPlayer();
-	GameService.init();
-	$scope.lives = GameService.getGame().lives;
-    vm.playerName = '';
+	  GameService.init();
+    vm.lives = GameService.getGame().lives;
     vm.currentStep = $stateParams.step || 0;
     vm.characters = ['baula', 'colibri', 'jaguar', 'mono', 'perezoso', 'rana', 'tucan', 'venado'];
     vm.difficultyLevels = [{
@@ -50,7 +49,7 @@
       nextStep: function (character) {
         nextStepCount();
         vm.gameOptions.character = character;
-        PlayerService.setCharacter(vm.gameOptions.character).setName(vm.gameOptions.playerName);
+        PlayerService.setCharacter(vm.gameOptions.character).setName(vm.gameOptions.name);
       },
       nextIsDisabled: function nextIsDisabled() {
         return !vm.gameOptions.character.trim();
@@ -59,16 +58,16 @@
       name: 'step two',
       nextStep: function () {
         nextStepCount();
-        PlayerService.setName(vm.gameOptions.playerName);
+        PlayerService.setName(vm.gameOptions.name);
       },
       isPlayerNameEnabled: function () {
         return !!vm.gameOptions.character.trim();
       },
       nextIsDisabled: function nextIsDisabled() {
-        return !vm.gameOptions.playerName.trim();
+        return !vm.gameOptions.name.trim();
       }
     }, {
-      name: 'step two',
+      name: 'step three',
       nextStep: function (difficulty) {
         nextStepCount();
         vm.gameOptions.difficulty = difficulty;
