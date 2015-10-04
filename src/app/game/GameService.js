@@ -35,7 +35,7 @@
 
     return {
       init: function () {
-        SettingsService.getSettings().then(function (settings) {
+        return SettingsService.getSettings().then(function (settings) {
 
           settings.forEach(function (setting) {
             var value = isNaN(setting.value) ? setting.value : +setting.value;

@@ -10,8 +10,9 @@
   function MainController($state, $stateParams, PlayerService, GameService) {
     var vm = this;
     vm.gameOptions = PlayerService.getPlayer();
-	  GameService.init();
-    vm.lives = GameService.getGame().lives;
+	  GameService.init().then(function () {
+      vm.lives = GameService.getGame().lives;
+    });
     vm.currentStep = $stateParams.step || 0;
     vm.characters = ['baula', 'colibri', 'jaguar', 'mono', 'perezoso', 'rana', 'tucan', 'venado'];
     vm.difficultyLevels = [{
