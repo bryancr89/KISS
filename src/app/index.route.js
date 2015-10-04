@@ -29,7 +29,8 @@
 	  .state('worldOne', {
         url: '/worldOne',
         templateUrl: 'app/world1/world1.html',
-        controllerAs: 'mundoUno'
+		 controller: 'worldOneController.js',
+        controllerAs: 'worldOneController'
       });
 
 
