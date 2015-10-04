@@ -33,8 +33,8 @@
       <h2>Seleccione la dificultad</h2>
       <ul>
         <li class="character" ng-repeat="difficulty in main.difficultyLevels"
-            ng-class="{'item-selected': main.gameOptions.difficulty == difficulty}">
-          <span ng-click="main.steps[3].nextStep(difficulty)"> {{difficulty}} </span>
+            ng-class="{'item-selected': main.gameOptions.difficulty == difficulty.value}">
+          <span ng-click="main.steps[3].nextStep(difficulty.value)"> {{difficulty.text}} </span>
         </li>
       </ul>
       <button class="btn btn-default" ng-click="main.stepBack()">Volver</button>

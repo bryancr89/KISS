@@ -26,6 +26,7 @@
         h = scope.height;
         GameService.init();
         scope.game = GameService.getGame();
+        scope.difficulty = GameService.getDifficulty(scope.player.difficulty);
 
         function drawGame() {
           //drawing the game canvas from scratch here
@@ -66,7 +67,7 @@
             butterfly.addToStage(scope.stage);
             butterflies.push(butterfly);
             addNewButterfly(butterflyColors);
-          }, 1000);
+          }, scope.difficulty.timeElementsToAdd);
         }
 
         function handleComplete() {
@@ -101,7 +102,7 @@
             });
             character.addToStage(scope.stage);
             scope.$apply();
-          }, 5000);
+          }, scope.difficulty.timeChangeColor);
 
           scope.stage.addEventListener("stagemousedown", handleJumpStart);
           createjs.Ticker.timingMode = createjs.Ticker.RAF;
@@ -110,8 +111,6 @@
           runningSoundInstance = createjs.Sound.play("runningSound", {loop: -1});
           scope.status = "running";
           window.onkeydown = keydown;
-          scope.score = 10;
-          scope.lifesCount = 2;
           scope.$apply();
 
           scope.$on('$destroy', function () {

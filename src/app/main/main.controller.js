@@ -17,7 +17,16 @@
     vm.playerName = '';
     vm.currentStep = 0;
     vm.characters = ['baula', 'colibri', 'jaguar', 'mono', 'perezoso', 'rana', 'tucan', 'venado'];
-    vm.difficultyLevels = ['Facil', 'Moderado', 'Dificil'];
+    vm.difficultyLevels = [{
+      text: 'Facil',
+      value: 'easy'
+    }, {
+      text: 'Intermedio',
+      value: 'medium'
+    }, {
+      text: 'Dificil',
+      value: 'hard'
+    }];
     function nextStepCount() {
       vm.currentStep++;
     }
