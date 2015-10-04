@@ -33,12 +33,12 @@
         {src: 'characters/mono/violet_char.png', id: 'mono-violet'},
         {src: 'characters/mono/yellow_char.png', id: 'mono-yellow'},
 
-        {src: 'characters/oso/blue_char.png', id: 'oso-blue'},
-        {src: 'characters/oso/green_char.png', id: 'oso-green'},
-        {src: 'characters/oso/orange_char.png', id: 'oso-orange'},
-        {src: 'characters/oso/red_char.png', id: 'oso-red'},
-        {src: 'characters/oso/violet_char.png', id: 'oso-violet'},
-        {src: 'characters/oso/yellow_char.png', id: 'oso-yellow'},
+        {src: 'characters/perezoso/blue_char.png', id: 'perezoso-blue'},
+        {src: 'characters/perezoso/green_char.png', id: 'perezoso-green'},
+        {src: 'characters/perezoso/orange_char.png', id: 'perezoso-orange'},
+        {src: 'characters/perezoso/red_char.png', id: 'perezoso-red'},
+        {src: 'characters/perezoso/violet_char.png', id: 'perezoso-violet'},
+        {src: 'characters/perezoso/yellow_char.png', id: 'perezoso-yellow'},
 
         {src: 'characters/rana/blue_char.png', id: 'rana-blue'},
         {src: 'characters/rana/green_char.png', id: 'rana-green'},

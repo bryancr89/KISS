@@ -8,7 +8,7 @@
       lives: 0,
       points: 0,
       name: '',
-      character: 'colibri'
+      character: 'perezoso'
     };
 
     return {
