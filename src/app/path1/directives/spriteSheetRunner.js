@@ -70,13 +70,15 @@
           }
           else if (scope.game.points === 0 && scope.game.lives !== 0) {
             GameDialogsService.loseLive();
-          } else if (scope.game.points >= scope.game.pointsSuccess) {
+          } else if (scope.game.points >= scope.game.pointsToAccessWorld) {
             stop();
+            GameService.resetPoints();
             GameDialogsService.wonGame().closePromise.then(function () {
               $state.go('home', {step: 4})
             });
           } else if (scope.game.points >= scope.game.pointsToWin) {
             GameDialogsService.gainLive();
+            scope.game.pointsToWin = scope.game.pointsToWin * 2;
           }
         }
 

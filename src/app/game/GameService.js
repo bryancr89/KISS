@@ -52,7 +52,7 @@
         });
       },
       validAction: function () {
-        game.points += game.pointsToWin;
+        game.points += game.pointsSuccess;
         if(game.points >= game.pointsToWin) {
           game.lives++;
         }
@@ -67,6 +67,9 @@
       resetGame: function() {
         game.points = 0;
         game.lives = initialLives;
+      },
+      resetPoints: function() {
+        game.points = 0;
       },
       getGame: function getGame() {
         return game;
