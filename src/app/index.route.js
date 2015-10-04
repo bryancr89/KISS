@@ -14,7 +14,6 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
-<<<<<<< Updated upstream
       .state('path1', {
         url: '/path1',
         templateUrl: 'app/path1/path.html',
@@ -25,13 +24,7 @@
         url: '/settings',
         templateUrl: 'app/settings/settings.html',
         controller: 'SettingsController',
-        controllerAs: 'settings'
-=======
-      .state('settings', {
-        url: '/settings',
-        templateUrl: 'app/settings/settings.html',
-        controller: 'SettingsController'
->>>>>>> Stashed changes
+        controllerAs: 'settingsController'
       });
 
     $urlRouterProvider.otherwise('/');

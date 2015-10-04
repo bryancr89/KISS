@@ -9,13 +9,21 @@
 
     //Gets the Settings json
     function getSettings() {
-      return $http.get('app/settings/settings.json').then(function(response) {
+      return $http.get('/settings').then(function(response) {
         return response.data;
       });
     }
 
+    //Store the Settings json
+    function setSettings(data) {
+      return $http.post('/settings', data).then(function(response) {
+        return response;
+      });
+    }
+
     return {
-      getSettings: getSettings
+      getSettings: getSettings,
+      setSettings: setSettings
     };
 
   }

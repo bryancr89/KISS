@@ -8,12 +8,17 @@
   angular.module('kiss').controller('SettingsController', SettingsController);
 
   /** @ngInject */
-  function SettingsController($scope, SettingsService) {
+  function SettingsController(SettingsService) {
+    var vm = this;
 
     //Sets the settings data to the scope
     function onLoadSettingsSuccess(data) {
-      $scope.parameters = data;
+      vm.parameters = data;
     }
+
+    vm.setSettings = function setSettings() {
+      SettingsService.setSettings(vm.parameters);
+    };
 
     SettingsService.getSettings().then(onLoadSettingsSuccess);
   }
