@@ -6,7 +6,7 @@
     </div>
 
     <div class="step" ng-if="main.currentStep == 1">
-      <h2>Escoja un personaje</h2>
+      <img class="seleccion-personaje" src="assets/main/seleccionPersonaje.png">
       <ul>
         <li class="character" ng-repeat="character in main.characters"
             ng-class="{'item-selected': main.gameOptions.character == character}">
