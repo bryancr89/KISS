@@ -22,21 +22,30 @@
         return;
       }
       if (newValue.lives === 0) {
-        return;
-      }
-      if (newValue.points === 0) {
         var dialog = ngDialog.open({
-          template: '<img src="/assets/path1/alert_menos_vida.png" width="420px" height="420px">',
+          template: '<img src="/assets/path1/alert_reiniciar.png" width="420px" height="420px">',
           plain: true,
           showClose: false
         });
 
-        $timeout(function () {
-          dialog.close();
-        }, 1000);
+      }
+      if (newValue.points === 0) {
+
+        if (newValue.lives !== 0) {
+          var dialog = ngDialog.open({
+            template: '<img src="/assets/path1/alert_menos_vida.png" width="420px" height="420px">',
+            plain: true,
+            showClose: false
+          });
+
+          $timeout(function () {
+            dialog.close();
+          }, 1000);
+        }
 
         return;
       }
+
       if(newValue.points >= newValue.pointsSuccess) {
         var dialog = ngDialog.open({
           template: '<img src="/assets/path1/alert_menos_vida.png" width="420px" height="420px">',

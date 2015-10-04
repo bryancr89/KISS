@@ -7,7 +7,7 @@
   {
     "id": "initialLifes",
     "name": "Cantidad de vidas iniciales",
-    "value": "5"
+    "value": "1"
   },
   {
     "id": "pointsToWin",
