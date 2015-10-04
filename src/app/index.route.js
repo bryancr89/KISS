@@ -19,6 +19,12 @@
         templateUrl: 'app/path1/path.html',
         controller: 'PathOneController',
         controllerAs: 'pathOne'
+      })
+      .state('settings', {
+        url: '/settings',
+        templateUrl: 'app/settings/settings.html',
+        controller: 'SettingsController',
+        controllerAs: 'settingsController'
       });
 
     $urlRouterProvider.otherwise('/');

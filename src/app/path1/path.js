@@ -10,7 +10,20 @@
     $scope.gameHeight = 600;
     $scope.score = 0;
     $scope.lifesCount = 3;
-    this.game = GameService.getGame();
-    this.player = PlayerService.getPlayer();
+    $scope.game = GameService.getGame();
+    vm.game = $scope.game;
+    vm.player = PlayerService.getPlayer();
+
+    $scope.$watch('game', function (newValue) {
+      if(newValue.lives === 0) {
+        //TODO: Game over.
+        return;
+      }
+      if(newValue.points < 0) {
+        //TODO show you have one live less;
+
+      }
+
+    }, true);
   }
 })();
